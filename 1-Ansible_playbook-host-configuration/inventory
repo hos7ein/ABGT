@@ -1,0 +1,4 @@
+[app_servers]
+192.168.56.21 node_name=app1
+192.168.56.22 node_name=app2
+192.168.56.23 node_name=app3
