@@ -1,0 +1,24 @@
+---
+#show dynmotd banner
+- name: append line to /etc/pam.d/login file
+  lineinfile: dest=/etc/pam.d/login
+              line='{{item}}'
+  with_items:
+    - session  optional  pam_motd.so
+
+
+- name: append line to /etc/profile file
+  lineinfile: dest=/etc/profile
+              line='{{item}}'
+  with_items:
+    - /etc/dynmotd.sh
+
+
+- name: copy template dynmotd.sh file
+  template:
+    src: dynmotd.sh.j2
+    dest: /etc/dynmotd.sh
+    owner: root
+    group: root
+    mode: 0755
+    backup: yes
