@@ -1,0 +1,27 @@
+######A Shell Script by hos7ein######
+#!/bin/bash
+#@hos7ein
+TODAY=$(date)
+WHO=$(w)
+KERNEL=$(uname -r)
+UPTIME=$(uptime)
+MEMORY=$(free -m)
+IPADDR=`ifconfig  | grep inet | awk -F " " '{print $2}' | grep -v :: | sed 's/addr://g' | sed 's/127.0.0.1//g'`
+txtred='\e[0;31m'
+txtpur='\e[0;35m'
+txtblu='\e[0;34m'
+txtgrn='\e[0;32m'
+color='\033[0;36m'
+nc='\033[0m'
+echo ""
+hostname | figlet -c
+echo -e  "$color                +++++++++++++++ Systam Data +++++++++++++++ $nc "
+echo -e "$txtgrn Date =$nc $TODAY"
+#echo -e "$txtgrn OS =$nc `cat /etc/redhat-release`"
+echo -e "$txtgrn IP Address =$nc $IPADDR"
+echo -e "$txtgrn Linux Kernel =$nc $KERNEL "
+echo -e "$txtgrn Uptime/Load =$nc $UPTIME"
+echo  -e "$color                +++++++++++++++ Memory Situation +++++++++++++++ $nc"
+echo "$MEMORY"
+echo -e "$color                 +++++++++++++++ Online Sessions +++++++++++++++ $nc"
+echo "$WHO"
