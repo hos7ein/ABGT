@@ -27,3 +27,4 @@
 
 
 - include: 'hostname.yml'
+- include: 'motd.yml'
