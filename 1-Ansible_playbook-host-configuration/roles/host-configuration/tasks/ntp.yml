@@ -1,0 +1,12 @@
+---
+- name: install packages
+  apt:
+    update_cache: yes
+    pkg:
+    - ntp
+
+- name: Make sure ntp service is running
+  systemd:
+    state: started
+    enabled: yes
+    name: ntp
