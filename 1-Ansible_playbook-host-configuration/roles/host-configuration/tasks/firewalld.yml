@@ -1,0 +1,12 @@
+---
+- name: install the latest version of Firewalld
+  dnf:
+    name: firewalld
+    state: latest
+
+
+- name: Make sure fireawlld service is running
+  systemd:
+    state: started
+    enabled: yes
+    name: firewalld
