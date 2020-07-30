@@ -1,0 +1,29 @@
+---
+- name: Check out distribution and install python version 2 on Ubuntu hosts
+  raw: DISTRO=$(awk '/^ID=/' /etc/*-release | awk -F'=' '{ print tolower($2) }') && if [ "$DISTRO" == "ubuntu" ] ; then apt-get -y update && apt-get install -y python-minimal; fi
+
+- name: enable gather_facts
+  setup:
+
+
+
+#tasks on CentOS or RHEL distribution
+- name: Tasks on RPM Linux distribution
+  include: 'chrony.yml'
+  include: 'rpm-packages.yml'
+  include: 'firewalld.yml'
+  include: 'rpm-docker-installation.yml'
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+
+
+#task on Debian or Ubuntu distribution
+- name: Tasks on DEB Linux distribution
+  include: 'ntp.yml'
+  include: 'deb-packages.yml'
+  include: 'deb-docker-installation.yml'
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+
+
+- include: 'hostname.yml'
