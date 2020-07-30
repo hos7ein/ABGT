@@ -1,0 +1,3 @@
+- hosts: build_host
+  remote_user: root
+  gather_facts: False
