@@ -1,0 +1,44 @@
+---
+- name : install epel repo
+  dnf:
+    name:
+      - epel-release
+
+- name : install packages
+  dnf:
+    name:
+      - zip
+      - unzip
+      - mtr
+      - nload
+      - screen
+      - nmap
+      - rsync
+      - htop
+      - nethogs
+      - nano
+      - wget
+      - net-tools
+      - bash-completion
+      - iotop
+      - bind-utils
+      - vim
+      - telnet
+      - tcpdump
+      - xz
+      - git
+      - yum-utils
+      - lsof
+      - aria2
+      - psmisc
+      - python3-pip
+      - curl
+      - dnf-plugins-core
+      - figlet
+    state: latest
+
+
+- name: upgrade all packages
+  dnf:
+    name: "*"
+    state: latest
