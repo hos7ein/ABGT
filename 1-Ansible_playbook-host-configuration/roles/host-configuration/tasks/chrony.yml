@@ -1,0 +1,13 @@
+---
+- name : install chrony package
+  dnf:
+    name:
+      - chrony
+    state: latest
+
+
+- name: Make sure chronyd service is running
+  systemd:
+    state: started
+    enabled: yes
+    name: chronyd
