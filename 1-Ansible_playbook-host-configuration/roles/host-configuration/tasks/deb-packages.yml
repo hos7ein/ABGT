@@ -1,0 +1,11 @@
+---
+- name: install packages
+  apt:
+    update_cache: yes
+    pkg:
+    - figlet
+
+- name: Upgrade all packages to the latest version
+  apt:
+    name: "*"
+    state: latest
