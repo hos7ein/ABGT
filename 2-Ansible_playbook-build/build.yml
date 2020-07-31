@@ -1,3 +1,17 @@
 - hosts: build_host
   remote_user: root
   gather_facts: False
+  
+  tasks:
+    - name: create build directory
+      file:
+        path: /opt/demo-dockerfile
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Synchronization of src on the control machine to dest on the remote host
+      synchronize:
+        src: ../apps
+        dest: /opt/demo-dockerfile
