@@ -1,7 +1,8 @@
 - hosts: build_host
   remote_user: root
   gather_facts: False
-  
+  vars_files:
+    - secrets.yml
   tasks:
     - name: create build directory
       file:
@@ -15,3 +16,9 @@
       synchronize:
         src: ../apps
         dest: /opt/demo-dockerfile
+
+   - name: login to docker registry
+     docker_login:
+       username: "{{ docker_hub_username }}"
+       password: "{{ docker_hub_password }}"
+       email: "{{ docker_hub_email }}"
