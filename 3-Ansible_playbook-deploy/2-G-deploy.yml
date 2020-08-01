@@ -1,0 +1,42 @@
+- hosts: app_servers
+  remote_user: root
+  gather_facts: False
+  vars:
+    image_name: hos7ein/app
+    version: v2.0.0
+  tasks:
+    - name: Deploy G-deploy docker container
+      docker_container:
+            name: "app-{{ version }}"
+            hostname: "app-{{ version }}"
+            image: "docker.io/{{ image_name }}:{{ version }}"
+            networks_cli_compatible: yes
+            networks:
+              - name: app-net
+            purge_networks: yes
+            published_ports:
+              - 127.0.0.1:4002:3000
+            restart_policy: always
+
+    - name: Verify application state
+      uri:
+        url: http://127.0.0.1:4002/healthz
+        status_code: 200
+      register: result
+
+    - name: remove line in /opt/haproxy/haproxy.cfg file
+      lineinfile:
+        path: /opt/haproxy/haproxy.cfg
+        state: absent
+        regexp: '^server'
+
+
+    - name: append line to /opt/haproxy/haproxy.cfg file
+      lineinfile:
+        path: /opt/haproxy/haproxy.cfg
+        line: '{{item}}'
+      with_items:
+        - "server  app-{{ version }}   app-{{ version }}:3000 check"
+
+    - name: reload haproxy config file
+      shell: docker kill -s HUP haproxy
