@@ -6,7 +6,7 @@
     version: v1.0.0
     local_port: 4001
   tasks:
-    - name: Deploy B-deploy docker container
+    - name: Deploy {{ version }} docker container
       docker_container:
             name: "app-{{ version }}"
             hostname: "app-{{ version }}"
