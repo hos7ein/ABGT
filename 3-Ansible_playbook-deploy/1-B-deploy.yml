@@ -4,6 +4,7 @@
   vars:
     image_name: hos7ein/app
     version: v1.0.0
+    local_port: 4001
   tasks:
     - name: Deploy B-deploy docker container
       docker_container:
@@ -15,7 +16,7 @@
               - name: app-net
             purge_networks: yes
             published_ports:
-              - 127.0.0.1:4001:3000
+              - "127.0.0.1:{{ local_port }}:3000"
             restart_policy: always
 
     - name: append line to /opt/haproxy/haproxy.cfg file
