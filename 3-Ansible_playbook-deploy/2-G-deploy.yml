@@ -6,7 +6,7 @@
     version: v2.0.0
     local_port: 4002
   tasks:
-    - name: Deploy G-deploy docker container
+    - name: Deploy {{ version }} docker container
       docker_container:
             name: "app-{{ version }}"
             hostname: "app-{{ version }}"
@@ -21,7 +21,7 @@
 
     - name: Verify application state
       uri:
-        url: http://127.0.0.1:4002/healthz
+        url: "http://127.0.0.1:{{ local_port }}/healthz"
         status_code: 200
       register: result
 
