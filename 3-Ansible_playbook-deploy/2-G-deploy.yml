@@ -30,6 +30,7 @@
         path: /opt/haproxy/haproxy.cfg
         state: absent
         regexp: '^server'
+      when: result.status == 200
 
 
     - name: append line to /opt/haproxy/haproxy.cfg file
@@ -38,6 +39,8 @@
         line: '{{item}}'
       with_items:
         - "server  app-{{ version }}   app-{{ version }}:3000 check"
+      when: result.status == 200
 
     - name: reload haproxy config file
       shell: docker kill -s HUP haproxy
+      when: result.status == 200
