@@ -1,0 +1,3 @@
+---
+- include: 'configuration-files.yml'
+- include: 'deploy-haproxy.yml'
