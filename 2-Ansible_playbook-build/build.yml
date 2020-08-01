@@ -17,27 +17,27 @@
         src: ../apps
         dest: /opt/demo-dockerfile
 
-   - name: login to docker registry
-     docker_login:
-       username: "{{ docker_hub_username }}"
-       password: "{{ docker_hub_password }}"
-       email: "{{ docker_hub_email }}"
-
-  - name: build container image and push to docker hub
-      docker_image:
-        name: app:{{item}}
-        build:
-          path: /opt/demo-dockerfile/apps/{{item}}
-        repository: "{{ docker_hub_username }}/app:{{item}}"
-        push: yes
-        source: build
-        state: present
-      with_items:
-        - v1.0.0
-        - v2.0.0
-        - v3.0.0
-        - v4.0.0
-
-  - name: Log out of DockerHub
+    - name: login to docker registry
       docker_login:
-        state: absent
+        username: "{{ docker_hub_username }}"
+        password: "{{ docker_hub_password }}"
+        email: "{{ docker_hub_email }}"
+
+    - name: build container image and push to docker hub
+        docker_image:
+          name: app:{{item}}
+          build:
+            path: /opt/demo-dockerfile/apps/{{item}}
+          repository: "{{ docker_hub_username }}/app:{{item}}"
+          push: yes
+          source: build
+          state: present
+        with_items:
+          - v1.0.0
+          - v2.0.0
+          - v3.0.0
+          - v4.0.0
+
+    - name: Log out of DockerHub
+        docker_login:
+          state: absent
