@@ -4,6 +4,7 @@
   vars:
     image_name: hos7ein/app
     version: v2.0.0
+    local_port: 4002
   tasks:
     - name: Deploy G-deploy docker container
       docker_container:
@@ -15,7 +16,7 @@
               - name: app-net
             purge_networks: yes
             published_ports:
-              - 127.0.0.1:4002:3000
+              - "127.0.0.1:{{ local_port }}:3000"
             restart_policy: always
 
     - name: Verify application state
