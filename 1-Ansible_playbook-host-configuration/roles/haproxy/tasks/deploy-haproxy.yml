@@ -9,7 +9,7 @@
           - name: app-net
         purge_networks: yes
         published_ports:
-          - 5000:5000
+          - 3000:3000
         volumes:
           - /opt/haproxy:/etc/haproxy
         restart_policy: always
