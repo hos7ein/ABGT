@@ -4,7 +4,7 @@
   vars:
     image_name: hos7ein/app
     version: v1.0.0
-    local_port: 4001
+    local_port: 3001
   tasks:
     - name: Deploy {{ version }} docker container
       docker_container:
