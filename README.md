@@ -63,11 +63,12 @@ To blue deployment app:
 
 To green deployment app:
 
-```$ ansible-playbook -i inventory.ini 1-G-deploy.yml```
+```$ ansible-playbook -i inventory.ini 2-G-deploy.yml```
 
 To rollback:
 
-```$ ansible-playbook -i inventory.ini rolleback.yml```
+```$ ansible-playbook -i inventory.ini rollback.yml```
+
 
 
 
