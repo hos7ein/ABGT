@@ -39,5 +39,5 @@
           - v4.0.0
 
     - name: Log out of DockerHub
-        docker_login:
-          state: absent
+      docker_login:
+        state: absent
