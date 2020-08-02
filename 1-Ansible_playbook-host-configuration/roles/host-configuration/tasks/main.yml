@@ -28,3 +28,4 @@
 
 - include: 'hostname.yml'
 - include: 'motd.yml'
+- include: 'docker-config.yml'
