@@ -3,7 +3,7 @@ ABGT
 
 ### Introduction ###
 
-`ABGT` is not that ABGT! It is Ansible Blue Green Task which we can use it for preparing hosts, building docker images and Blue/Green deployment. 
+`ABGT` is not that ABGT! It is Ansible Blue Green Task which we can use it for preparing hosts, building docker images and Blue/Green deployment.
 
 
 ### Preparing hosts ###
@@ -90,4 +90,4 @@ To rollback:
 
 ## License
 
-FireLEMP source code is available under the GPL-3.0 [License](/LICENSE).
+ABGT source code is available under the GPL-3.0 [License](/LICENSE).
